@@ -1,0 +1,4 @@
+# Ignoriere alle Dateien im logs Ordner
+*
+# Behalte .gitignore
+!.gitignore
