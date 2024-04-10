@@ -3,6 +3,7 @@ import time
 import logging
 from app.database.db_connection import get_db_connection
 from app.scrapers.universal_scraper import scrape_universal
+from app.utils.http_util import send_price_change_notification
 from bson.decimal128 import Decimal128
 from datetime import datetime
 from app import config
@@ -36,6 +37,7 @@ def update_price_records(sched_time=None):
                             "price": Decimal128(price)
                         })
                         logging.info(f"Preis für Produkt {product['_id']} aktualisiert: {price}")
+                        send_price_change_notification(product['_id'], retailer_id, price)
         logging.info("Aktualisierung der Preisdatensätze abgeschlossen.")
         # Planen des nächsten Laufs
         schedule_next_run()
