@@ -1,17 +1,23 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-from app.utils.load_config import load_config
+from app import config
 
-def setup_logging():
+def setup_logging(log_format=None, log_folder=None, log_datefmt=None):
     """
     Konfiguriert das Logging-System mit den Einstellungen aus der Konfigurationsdatei.
     """
+    # Löscht alle bestehenden Handler
+    for handler in logging.root.handlers[:]:
+        logging.root.removeHandler(handler)
+
     try:
-        config = load_config()
-        log_format = config['Logging']['format']
-        log_folder = config['Logging']['folder']
-        log_datefmt = config['Logging']['datefmt']
+        if log_format is None:
+            log_format = config['Logging']['format']
+        if log_folder is None:
+            log_folder = config['Logging']['folder']
+        if log_datefmt is None:
+            log_datefmt = config['Logging']['datefmt']
         log_file_path = os.path.join(os.path.dirname(__file__), '..', '..', log_folder, 'application.log')
         
         if not os.path.exists(os.path.dirname(log_file_path)):
