@@ -3,11 +3,11 @@ import re
 
 
 def clean_price(price_str):
-    """
-    Bereinigt einen gegebenen Preis-String und konvertiert ihn in ein Dezimalformat.
+    """Bereinigt einen gegebenen Preis-String und konvertiert ihn in ein Dezimalformat.
 
     :param price_str: Der zu bereinigende Preis-String.
-    :return: Den bereinigten Preis als String im Dezimalformat, oder None bei einem Fehler.
+    :returns: Den bereinigten Preis als String im Dezimalformat, oder None bei einem Fehler.
+
     """
     try:
         normalized_str = re.sub(r"[^\d\.]", "", price_str)
