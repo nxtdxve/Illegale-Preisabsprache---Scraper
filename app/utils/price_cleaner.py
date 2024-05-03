@@ -9,7 +9,8 @@ def clean_price(price_str):
     :return: Den bereinigten Preis als String im Dezimalformat, oder None bei einem Fehler.
     """
     try:
-        match = re.search(r'\d+(\.\d+)?', price_str)
+        normalized_str = re.sub(r'[^\d\.]', '', price_str)
+        match = re.search(r'\d+(\.\d+)?', normalized_str)
         if match:
             return f"{float(match.group(0)):.2f}"
         else:
