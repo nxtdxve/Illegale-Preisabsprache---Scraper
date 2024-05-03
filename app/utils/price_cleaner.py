@@ -1,5 +1,5 @@
-import re
 import logging
+import re
 
 
 def clean_price(price_str):
