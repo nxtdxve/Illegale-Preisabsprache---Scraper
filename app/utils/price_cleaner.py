@@ -15,8 +15,10 @@ def clean_price(price_str):
         if match:
             return f"{float(match.group(0)):.2f}"
         else:
-            logging.warning(f"Keine Zahl im Preis-String {price_str} gefunden.")
+            logging.warning(
+                f"Keine Zahl im Preis-String {price_str} gefunden.")
             return None
     except Exception as e:
-        logging.error(f"Fehler beim Bereinigen des Preis-Strings {price_str}: {e}")
+        logging.error(
+            f"Fehler beim Bereinigen des Preis-Strings {price_str}: {e}")
         return None
